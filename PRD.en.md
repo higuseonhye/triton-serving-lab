@@ -1,7 +1,6 @@
 # [Technical PRD] Low-latency serving scheduler for real-time vision ingestion
 
 - **Version**: v1.0 (local prototype, queue scheduler checked)
-- **Author**: Seonhye Gu (AI Platform TPM / PM)
 - **Audience**: ingestion-queue design for an enterprise medical AI serving platform
 - **Scope**: batch scheduling for a lightweight vision proxy. Measurements are a local CPU queue. They are not a clinical system and not a run of NVIDIA Triton Server.
 - **Source tables**: [SERVING_RESULTS.md](SERVING_RESULTS.md)

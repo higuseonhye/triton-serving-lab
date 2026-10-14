@@ -1,0 +1,32 @@
+name: "surgical_feature_net"
+platform: "onnxruntime_onnx"
+max_batch_size: 16
+
+input [
+  {
+    name: "input_frame"
+    data_type: TYPE_FP32
+    dims: [ 3, 128, 128 ]
+  }
+]
+
+output [
+  {
+    name: "logits"
+    data_type: TYPE_FP32
+    dims: [ 4 ]
+  }
+]
+
+# 수술 중 실시간 SLA(<30ms)를 지키기 위한 동적 배칭 큐 세팅
+dynamic_batching {
+  max_queue_delay_microseconds: 3000   # 3ms 대기 예산
+  preferred_batch_size: [ 4, 8, 16 ]
+}
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_CPU
+  }
+]
